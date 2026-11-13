@@ -1,0 +1,8 @@
+indicator,file,unit,period,source,method_caveat
+SST,Marisatel_SST_23-06-2026_pixels.csv,°C,DEMO-SIMULE,Données fictives générées pour démonstration,Aucune valeur ne provient d’une observation réelle; ne pas utiliser pour une décision scientifique.
+Salinité,Salinite_23-06-2026.csv,PSU,DEMO-SIMULE,Données fictives générées pour démonstration,Aucune valeur ne provient d’une observation réelle; ne pas utiliser pour une décision scientifique.
+Chlorophylle-a,Chlorophylle_a_carte_Juin2026.csv,mg/m3,DEMO-SIMULE,Données fictives générées pour démonstration,Aucune valeur ne provient d’une observation réelle; ne pas utiliser pour une décision scientifique.
+Turbidité,Turbidite_carte_Juin2026.csv,FNU,DEMO-SIMULE,Données fictives générées pour démonstration,Aucune valeur ne provient d’une observation réelle; ne pas utiliser pour une décision scientifique.
+Courants,Vitesse_courant_23-06-2026.csv,m/s,DEMO-SIMULE,Données fictives générées pour démonstration,Aucune valeur ne provient d’une observation réelle; ne pas utiliser pour une décision scientifique.
+Oxygène dissous,Oxygene_dissous_moyen_Juin2026.csv,mg/L,DEMO-SIMULE,Données fictives générées pour démonstration,Aucune valeur ne provient d’une observation réelle; ne pas utiliser pour une décision scientifique.
+Hauteur des vagues,Hauteur_vague_moyenne_Juin2026.csv,m,DEMO-SIMULE,Données fictives générées pour démonstration,Aucune valeur ne provient d’une observation réelle; ne pas utiliser pour une décision scientifique.

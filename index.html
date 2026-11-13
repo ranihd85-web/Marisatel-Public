@@ -1,0 +1,633 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="MARISATEL — Plateforme d'intelligence marine et d'aide à la présélection de sites aquacoles en Algérie.">
+<title>Accueil | MARISATEL — Intelligence Marine</title>
+
+<style>
+:root{
+  --navy:#092238;
+  --navy2:#103650;
+  --teal:#20c5b3;
+  --cyan:#76d9e3;
+  --bg:#f2f6fa;
+  --panel:#ffffff;
+  --text:#183247;
+  --muted:#71869a;
+  --border:#e0e9f0;
+  --shadow:0 8px 28px rgba(14,43,65,.06);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;
+  font-family:Inter,"Segoe UI",Arial,sans-serif;
+  background:var(--bg);
+  color:var(--text);
+}
+a{color:inherit;text-decoration:none}
+button,a{-webkit-tap-highlight-color:transparent}
+.shell{min-height:100vh;display:flex}
+.sidebar{
+  width:258px;
+  flex-shrink:0;
+  min-height:100vh;
+  padding:25px 17px;
+  background:linear-gradient(180deg,var(--navy),#0b2b43);
+  color:white;
+  display:flex;
+  flex-direction:column;
+}
+.brand{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  padding:3px 8px 28px;
+}
+.brandmark{
+  width:45px;height:45px;
+  display:grid;place-items:center;
+  border-radius:13px;
+  background:linear-gradient(135deg,var(--teal),var(--cyan));
+  color:#08283b;
+  font-size:24px;font-weight:900;
+}
+.brand strong{display:block;font-size:19px;letter-spacing:1.4px}
+.brand small{
+  display:block;margin-top:5px;
+  font-size:9px;letter-spacing:2px;color:#a8c2d1;
+}
+.navlabel{
+  padding:16px 11px 9px;
+  color:#87a4b7;font-size:10px;
+  text-transform:uppercase;letter-spacing:1.5px;
+}
+.nav{display:grid;gap:5px}
+.nav a{
+  display:flex;align-items:center;gap:11px;
+  padding:12px 13px;
+  border-radius:8px;
+  color:#d5e4ec;font-size:13px;
+  transition:background .2s,color .2s;
+}
+.nav a span{width:18px;text-align:center;font-size:16px}
+.nav a:hover,.nav a.active{
+  background:#173f55;color:#fff;
+}
+.nav a.active{box-shadow:inset 3px 0 var(--teal)}
+.side-note{
+  margin-top:27px;padding:17px 12px;
+  border-top:1px solid #28485c;
+  color:#b8cbd7;font-size:11px;line-height:1.9;
+}
+.side-bottom{
+  margin-top:auto;padding:17px 12px 0;
+  border-top:1px solid #28485c;
+  color:#a9c0ce;font-size:10px;line-height:1.8;
+}
+.main{min-width:0;flex:1}
+.topbar{
+  min-height:83px;background:white;
+  border-bottom:1px solid var(--border);
+  display:flex;justify-content:space-between;
+  align-items:center;gap:20px;
+  padding:16px 34px;
+}
+.eyebrow{
+  color:#0b9e91;font-size:10px;
+  font-weight:800;letter-spacing:1.8px;
+  text-transform:uppercase;
+}
+.topbar h1{margin:6px 0 3px;font-size:22px;color:var(--navy)}
+.muted{font-size:12px;color:var(--muted)}
+.status{
+  padding:9px 13px;border-radius:25px;
+  background:#e9f8f4;color:#087d6b;
+  font-size:10px;white-space:nowrap;
+}
+.status-dot{
+  display:inline-block;width:7px;height:7px;
+  margin-right:6px;border-radius:50%;background:#18b79d;
+}
+.content{max-width:1500px;margin:auto;padding:30px 34px}
+.hero{
+  display:grid;grid-template-columns:minmax(0,1.4fr) minmax(240px,.8fr);
+  gap:20px;align-items:center;
+  padding:35px;border-radius:18px;
+  background:linear-gradient(115deg,#09263d,#104b64 70%,#087b80);
+  color:white;position:relative;overflow:hidden;
+  box-shadow:var(--shadow);
+}
+.hero .eyebrow{color:#68e5d7}
+.hero h2{
+  max-width:690px;margin:13px 0;
+  font-size:clamp(25px,3vw,38px);
+  line-height:1.22;letter-spacing:-.7px;
+}
+.hero h2 span{color:#6ce0d4}
+.hero p{
+  max-width:700px;color:#d0e1e9;
+  font-size:13px;line-height:1.9;
+}
+.actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:22px}
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;
+  padding:12px 16px;border-radius:8px;
+  border:1px solid #ffffff50;color:white;
+  font-size:11px;font-weight:700;
+  transition:transform .2s,background .2s;
+}
+.btn:hover{transform:translateY(-2px)}
+.btn.primary{background:var(--teal);border-color:var(--teal);color:#062d38}
+.btn.ghost{background:#ffffff0d}
+.ocean-visual{
+  min-height:245px;position:relative;
+  display:grid;place-items:center;overflow:hidden;
+}
+.ring{
+  position:absolute;border:1px solid #8ce9e233;
+  border-radius:50%;aspect-ratio:1;
+}
+.ring.r1{width:145px}
+.ring.r2{width:205px}
+.ring.r3{width:265px}
+.ocean-core{
+  position:relative;z-index:1;
+  width:115px;height:115px;border-radius:50%;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  background:linear-gradient(145deg,#1bc7b4,#78dfe3);
+  color:#082c40;box-shadow:0 0 45px #20c5b344;
+}
+.ocean-core .wave{font-size:30px}
+.ocean-core strong{font-size:11px;letter-spacing:1px}
+.ocean-core small{font-size:7px;letter-spacing:1px;margin-top:4px}
+.float-label{
+  position:absolute;z-index:2;
+  padding:8px 10px;border-radius:6px;
+  background:#0b3048;border:1px solid #ffffff23;
+  color:#d9f4f1;font-size:8px;letter-spacing:1px;
+}
+.float-label.l1{top:19px;left:2px}
+.float-label.l2{right:0;bottom:29px}
+.section-title{
+  display:flex;justify-content:space-between;align-items:end;
+  gap:15px;margin:32px 0 16px;
+}
+.section-title h2{margin:0;color:var(--navy);font-size:19px}
+.section-title p{margin:0;color:var(--muted);font-size:11px}
+.grid{display:grid;gap:15px}
+.grid.three{grid-template-columns:repeat(3,minmax(0,1fr))}
+.card{
+  min-width:0;padding:20px;
+  border:1px solid var(--border);
+  border-radius:12px;background:var(--panel);
+  box-shadow:var(--shadow);
+  transition:transform .2s,border-color .2s,box-shadow .2s;
+}
+.card:hover{
+  transform:translateY(-3px);
+  border-color:#9bded7;
+  box-shadow:0 12px 30px #0c35420c;
+}
+.icon{
+  width:43px;height:43px;display:grid;place-items:center;
+  border-radius:11px;background:#e6f6f5;
+  font-size:21px;margin-bottom:18px;
+}
+.card:nth-child(3n+2) .icon{background:#fff3e5}
+.card:nth-child(3n) .icon{background:#eaf1ff}
+.card h3{font-size:15px;color:var(--navy);margin:0 0 9px}
+.card p{font-size:12px;color:var(--muted);line-height:1.8;margin:0 0 16px}
+.pill{
+  display:inline-block;border-radius:6px;
+  padding:7px 9px;background:#eaf8f6;
+  color:#087f73;font-size:10px;font-weight:700;
+}
+.client-type{display:flex;gap:9px;flex-wrap:wrap}
+.client-type span{
+  background:white;border:1px solid var(--border);
+  padding:10px 13px;border-radius:8px;
+  color:#536b7e;font-size:11px;
+}
+.notice{
+  margin-top:25px;padding:17px 19px;
+  border-radius:10px;font-size:11px;line-height:1.9;
+}
+.notice.info{background:#e8f6fa;border:1px solid #cce9f0;color:#3b6679}
+.footer{
+  padding:22px 34px;margin-top:22px;
+  border-top:1px solid var(--border);
+  background:#fff;color:var(--muted);
+  font-size:10px;line-height:1.9;
+}
+.footer b{color:var(--navy);letter-spacing:1px}
+.footer a{color:#0b9489;text-decoration:underline}
+@media(max-width:1100px){
+  .sidebar{width:225px}
+  .content{padding:24px}
+  .grid.three{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .hero{padding:27px}
+}
+@media(max-width:760px){
+  .shell{display:block}
+  .sidebar{width:100%;min-height:auto;padding:15px}
+  .brand{padding-bottom:14px}
+  .navlabel,.side-note,.side-bottom{display:none}
+  .nav{display:flex;overflow-x:auto;padding-bottom:4px}
+  .nav a{white-space:nowrap;font-size:11px;padding:10px}
+  .topbar{padding:15px 18px}
+  .content{padding:17px}
+  .hero{grid-template-columns:1fr;padding:24px}
+  .ocean-visual{min-height:205px}
+  .grid.three{grid-template-columns:1fr}
+  .section-title{align-items:flex-start;flex-direction:column}
+  .footer{padding:20px 17px}
+}
+.brand-image{
+  width:52px;
+  height:52px;
+  object-fit:contain;
+  background:transparent;
+  padding:0;
+  border-radius:0;
+  overflow:visible;
+  flex-shrink:0;
+}
+.ocean-photo {
+    min-height: 300px;
+    border-radius: 14px;
+    background-image:
+        linear-gradient(rgba(3,24,42,0.20), rgba(3,24,42,0.20)),
+        url("./marisatel-hero.png.png");
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 18px;
+}
+.photo-caption{display:flex;flex-direction:column;gap:5px;color:#fff;font-size:11px;letter-spacing:.6px}
+.photo-caption span{font-size:10px;color:#d7edf2}
+.satellite-tag{align-self:flex-end;background:#08283bd9;color:#baf7ef;border:1px solid #6ce0d455;border-radius:8px;padding:9px 12px;font-size:10px;letter-spacing:1px}
+@media(max-width:850px){.hero{grid-template-columns:1fr}.ocean-photo{min-height:220px}}
+.hero-title {
+    font-family: 'Orbitron', 'Arial', sans-serif;
+    font-size: clamp(28px, 4vw, 54px);
+    font-weight: 700;
+    line-height: 1.4;
+    color: #ffffff;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    text-shadow: 0 3px 15px rgba(0,0,0,0.6);
+}
+
+.hero-title span {
+    display: block;
+    color: #35e0d0;
+    font-size: 0.48em;
+    letter-spacing: 5px;
+    margin: 12px 0;
+}
+
+.hero-title strong {
+    display: block;
+    font-size: 0.72em;
+    color: #ffffff;
+}
+/* Correction de la zone des cartes */
+.content {
+    background: #f2f6fa !important;
+    color: #12344a !important;
+}
+.content > .grid.three,
+.content > .section-title {
+    background: transparent !important;
+}
+
+.content .section-title h2 {
+    color: #12344a !important;
+}
+
+.content .section-title p {
+    color: #647b8d !important;
+}
+
+.content .grid.three .card {
+    background: #ffffff !important;
+    color: #12344a !important;
+    border: 1px solid #dce7ef !important;
+    border-radius: 16px !important;
+    box-shadow: 0 5px 18px rgba(10,45,65,.06);
+}
+/* MARISATEL — Correction de la page d'accueil */
+
+/* إزالة الخلفية الزرقاء من محيط البطاقات */
+.content {
+    background: #f1f6fa !important;
+}
+
+/* إزالة الإطار الكبير */
+.content > .hero {
+    margin-bottom: 28px !important;
+}
+
+/* إزالة الفراغات الزائدة */
+.content > .section-title {
+    margin: 24px 0 18px !important;
+    padding: 0 !important;
+    background: transparent !important;
+}
+
+/* تنسيق البطاقات */
+.content .grid.three {
+    display: grid !important;
+    grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+    gap: 18px !important;
+    margin: 0 0 28px !important;
+    background: transparent !important;
+}
+
+/* جعل البطاقات متساوية */
+.content .grid.three .card {
+    background: white !important;
+    border-radius: 16px !important;
+    padding: 24px !important;
+    height: 100% !important;
+    box-sizing: border-box !important;
+}
+
+/* إظهار العناوين بوضوح */
+.content .section-title h2 {
+    color: #102d46 !important;
+}
+
+.content .section-title p {
+    color: #647b8d !important;
+}
+
+/* خلفية فاتحة للقسم السفلي */
+.content > .notice {
+    margin-top: 24px !important;
+}
+
+/* توافق مع الهاتف */
+@media (max-width: 850px) {
+    .content .grid.three {
+        grid-template-columns: 1fr !important;
+    }
+}/* Suppression des espaces et du grand fond sombre */
+
+.main > .content {
+    background: #f1f6fa !important;
+    padding: 0 24px 30px !important;
+    margin: 0 !important;
+}
+
+/* Coller l'image sous l'en-tête */
+.main > .content > .hero {
+    margin-top: 0 !important;
+    margin-bottom: 24px !important;
+}
+
+/* Supprimer le fond sombre derrière les cartes */
+.main > .content > .grid.three,
+.main > .content > .section-title {
+    background: transparent !important;
+}
+
+/* Garder les cartes blanches et régulières */
+.main > .content > .grid.three .card {
+    background: #fff !important;
+}
+
+/* Réduire l'espace autour du contenu */
+.main {
+    padding-bottom: 0 !important;
+}/* MARISATEL - Correction de la mise en page */
+
+.main {
+    padding: 0 !important;
+    margin: 0 !important;
+    background: #f1f6fa !important;
+    min-width: 0 !important;
+}
+
+.content {
+    width: 100% !important;
+    max-width: none !important;
+    margin: 0 !important;
+    padding: 20px 24px 0 !important;
+    background: #f1f6fa !important;
+    border-radius: 0 !important;
+    min-height: auto !important;
+}
+
+/* Image principale */
+.content > .hero {
+    margin: 0 0 24px !important;
+}
+
+/* Suppression du fond bleu derrière les cartes */
+.content > .grid.three,
+.content > .section-title {
+    background: transparent !important;
+}
+
+/* Cartes */
+.content .grid.three .card {
+    background: #ffffff !important;
+}
+
+/* Suppression de l'espace avant le pied de page */
+.content {
+    padding-bottom: 0 !important;
+}
+
+.footer {
+    margin-top: 0 !important;
+}
+
+/* Adaptation à la largeur de l'écran */
+@media (min-width: 851px) {
+    .main,
+    .content {
+        width: 100% !important;
+        max-width: none !important;
+    }
+}</style>
+</head>
+
+<body>
+<div class="shell">
+
+<aside class="sidebar">
+  <a class="brand" href="index.html">
+   <img class="brandmark brand-image" src="Marisatel_logo_transparent.png" alt="Logo MARISATEL">
+    <div>
+      <strong>MARISATEL</strong>
+      <small>INTELLIGENCE MARINE</small>
+    </div>
+  </a>
+
+  <div class="navlabel">Navigation principale</div>
+  <nav class="nav">
+    <a class="active" href="index.html"><span>⌂</span> Accueil</a>
+    <a href="carte.html"><span>◎</span> Carte marine</a>
+    <a href="indicateurs.html"><span>◈</span> Indicateurs</a>
+    <a href="analyse.html"><span>⌁</span> Analyse du site</a>
+    <a href="rapport.html"><span>▤</span> Rapport scientifique</a>
+    <a href="services.html"><span>▧</span> Services cartographiques</a>
+    <a href="sources.html"><span>⌘</span> Sources &amp; méthode</a>
+  </nav>
+
+  <div class="side-note">
+    <b style="color:var(--teal)">Notre mission</b><br>
+    Transformer des données marines documentées en cartes et analyses
+    utiles à la présélection de sites aquacoles.
+  </div>
+
+  <div class="side-bottom">
+    <b>MARISATEL v1.0</b><br>
+    Prototype académique<br>
+    Aquaculture marine · Algérie
+  </div>
+</aside>
+
+<main class="main">
+
+<header class="topbar">
+  <div>
+    <div class="eyebrow">Plateforme d’aide à la décision</div>
+    <h1>Accueil</h1>
+    <div class="muted">Présentation du projet et accès aux modules</div>
+  </div>
+  <div class="status"><span class="status-dot"></span>Prototype académique · données à valider</div>
+</header>
+
+<div class="content">
+
+<section class="hero" style="
+    display:block;
+    padding:0;
+    margin:20px 0;
+    border-radius:24px;
+    overflow:hidden;
+    background:#06243b;
+">
+    <div style="position:relative;width:100%;line-height:0;">
+
+  <img
+    src="marisatel-hero.png.png"
+    alt="MARISATEL — Intelligence Marine"
+    style="display:block;width:100%;height:auto;border-radius:24px;"
+  >
+
+  <!-- زر الخريطة البحرية -->
+  <a href="carte.html"
+     aria-label="Explorer la carte marine"
+     style="position:absolute;left:3%;top:73%;width:20%;height:12%;display:block;">
+  </a>
+
+  <!-- زر دراسة الموقع -->
+  <a href="analyse.html"
+     aria-label="Étudier un site"
+     style="position:absolute;left:25%;top:73%;width:13%;height:12%;display:block;">
+  </a>
+
+  <!-- زر طلب الخرائط -->
+  <a href="services.html"
+     aria-label="Demander une cartographie"
+     style="position:absolute;left:39%;top:73%;width:20%;height:12%;display:block;">
+  </a>
+
+</div>
+</section>
+
+<div class="section-title">
+  <h2>Parcours de la plateforme</h2>
+  <p>Chaque module possède sa propre page.</p>
+</div>
+
+<section class="grid three">
+  <a class="card" href="carte.html">
+    <div class="icon">🗺️</div>
+    <h3>Carte marine</h3>
+    <p>Localisation des zones d’étude et préparation des couches géographiques.</p>
+    <span class="pill">Ouvrir la page →</span>
+  </a>
+
+  <a class="card" href="indicateurs.html">
+    <div class="icon">🌡️</div>
+    <h3>Indicateurs environnementaux</h3>
+    <p>Accès aux paramètres, unités, sources et échelles d’interprétation.</p>
+    <span class="pill">Ouvrir les indicateurs →</span>
+  </a>
+
+  <a class="card" href="rapport.html">
+    <div class="icon">📑</div>
+    <h3>Rapport scientifique</h3>
+    <p>Présentation de la zone, tableaux, cartes à intégrer, analyse et conclusion prudente.</p>
+    <span class="pill">Préparer le rapport →</span>
+  </a>
+
+  <a class="card" href="analyse.html">
+    <div class="icon">🔎</div>
+    <h3>Analyse du site</h3>
+    <p>Choix d’une zone et d’une espèce, avec état de disponibilité des données.</p>
+    <span class="pill">Analyser →</span>
+  </a>
+
+  <a class="card" href="services.html">
+    <div class="icon">📐</div>
+    <h3>Services cartographiques</h3>
+    <p>Catalogue des prestations proposées aux institutions et entreprises aquacoles.</p>
+    <span class="pill">Voir les services →</span>
+  </a>
+
+  <a class="card" href="sources.html">
+    <div class="icon">🔬</div>
+    <h3>Sources et méthodologie</h3>
+    <p>Traçabilité des produits, unités, dates, limites et validation terrain.</p>
+    <span class="pill">Consulter →</span>
+  </a>
+</section>
+
+<div class="section-title">
+  <h2>Pour qui ?</h2>
+  <p>Segments identifiés dans le BMC</p>
+</div>
+
+<div class="client-type">
+  <span>Institutions publiques</span>
+  <span>Organismes gouvernementaux</span>
+  <span>Universités &amp; laboratoires</span>
+  <span>Écoles et instituts maritimes</span>
+  <span>Entreprises aquacoles</span>
+  <span>Bureaux d’études</span>
+</div>
+
+<div class="notice info">
+  <b>Statut scientifique :</b>
+  les données disponibles dans le prototype ne sont pas toutes des cartes raster.
+  Les valeurs CSV peuvent être affichées comme points si leurs colonnes et unités
+  sont valides. Les cartes continues et les décisions définitives nécessitent
+  l’intégration des produits spatiaux correspondants, le contrôle qualité et la
+  validation des critères. Les images satellitaires seront intégrées ultérieurement.
+</div>
+
+</div>
+
+<footer class="footer">
+  <b>MARISATEL · INTELLIGENCE MARINE</b><br>
+  Prototype de mémoire — littoral algérien. Les cartes thématiques définitives
+  seront activées après intégration et contrôle des produits spatiaux.
+  <a href="sources.html">Sources et limites</a>.
+</footer>
+
+</main>
+</div>
+</body>
+</html>
